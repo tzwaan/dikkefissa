@@ -1,0 +1,130 @@
+<!DOCTYPE>
+<html>
+    <head>
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-73899141-2"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', 'UA-73899141-2');
+        </script>
+
+        <meta http_equiv="Content-Type" content="text/html; chars=utf-8" />
+        <link rel="shortcut icon" type="image/x-icon" href="/gifs/favicon.ico"/>
+        <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" crossorigin="anonymous"></script>
+        <script src="/howler.min.js"></script>
+        <script src="/stopwatch.js"></script>
+        <script src="/fissas.js"></script>
+        <script src="/dikkefissa.js"></script>
+        <title>INTERNET</title>
+        <style>
+            html, body {
+                text-align: center;
+                margin: 0;
+                width: 100%;
+                height: 100%;
+                overflow: hidden;
+            }
+            h1 {
+                margin: 20px;
+                text-transform: uppercase;
+                font-family: sans-serif;
+            }
+            div {
+                position: relative;
+                display: block;
+                margin: 0 auto;
+                width: 40%;
+            }
+            div#gif_container {
+                position: relative;
+                width: 40%;
+                display: table;
+                vertical-align: middle;
+            }
+            div#gif_container:before {
+                content: '';
+                display: block;
+                padding-top: 75%;
+            }
+            img {
+                top: 0;
+                position: absolute;
+                display: table-cell;
+                width: 100%;
+            }
+            div#inputs {
+                display: block;
+                position: fixed;
+                top: 10px;
+                right: 10px;
+                width: auto;
+            }
+            div#inputs .icon {
+                position: absolute;
+                top: 0px;
+                right: 0px;
+            }
+            div#inputs .icon:hover + dl {
+                display: block;
+            }
+            div#inputs dl {
+                display: none;
+                position: absolute;
+                right: 20px;
+                top: 0;
+                margin: 0;
+                width: 190px;
+            }
+            div#inputs dt {
+                width: 50%;
+                margin: 0;
+                float: left;
+                text-align: left;
+            }
+            div#inputs dd {
+                width: 50%;
+                margin: 0;
+                float: left;
+                text-align: left;
+            }
+            div#inputs span {
+                display: block;
+            }
+            @media screen and (max-width: 720px) {
+                div#gif_container {
+                    width: 100%;
+                }
+            }
+            .enabled {
+                color: green;
+            }
+        </style>
+    </head>
+    <body>
+        <h1 id='title'>Dikke Fissa</h1>
+        <div id="gif_container"><img id='gif' /></div>
+        <p><span style="cursor: hand;" onclick="previous()">vorige</span> | <span style="cursor: hand;" onclick="next()">volgende</span></p>
+        <p><span id='number'></span></p>
+        <p><span id="randomizer" onclick="toggleRandomizer()" style="cursor: hand;">Randomizer</span></p>
+        <p>You've been in a complete state of fissa for <span id="time"></span></p>
+        <p>In total you've listened to this fissa for: <span id="score"></span></p>
+        </div>
+
+        <div id="inputs">
+            <i class="icon far fa-keyboard"></i>
+            <dl>
+                <dt>Volgende: <dd>J L C S D <i class="fas fa-long-arrow-alt-right"></i>
+                <dt>Vorige: <dd>H K Z W A <i class="fas fa-long-arrow-alt-left"></i>
+                <dt>Random: <dd>R X
+                <dt>Nummer: <dd>0-9
+            </dl>
+        </div>
+
+        <div id="assets" style="diplay: hidden;">
+        </div>
+
+    </body>
+</html>
