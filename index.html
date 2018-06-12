@@ -55,28 +55,39 @@
                 display: table-cell;
                 width: 100%;
             }
-            div#inputs {
+            div#inputs, div#settings {
                 display: block;
                 position: fixed;
+                width: 200px;
+                height: 100px;
                 top: 10px;
                 right: 10px;
                 width: auto;
             }
-            div#inputs .icon {
+            div#inputs:hover dl, div#settings:hover .contents {
+                display: block;
+            }
+            div#settings {
+                top: 30px;
+            }
+            div#inputs .icon, div#settings .icon {
                 position: absolute;
                 top: 0px;
                 right: 0px;
             }
-            div#inputs .icon:hover + dl {
-                display: block;
-            }
-            div#inputs dl {
+            div#inputs dl, div#settings .contents {
                 display: none;
                 position: absolute;
-                right: 20px;
+                right: 15px;
                 top: 0;
                 margin: 0;
-                width: 190px;
+                width: 200px;
+                background-color: #fff;
+                border: 1px solid #000;
+                padding: 5px;
+            }
+            div#settings .contents {
+                width: 400px;
             }
             div#inputs dt {
                 width: 50%;
@@ -92,6 +103,20 @@
             }
             div#inputs span {
                 display: block;
+            }
+            div#settings dt {
+                box-sizing: border-box;
+                width: 70%;
+                margin: 0;
+                float: left;
+                text-align: right;
+                padding-right: 10px;
+            }
+            div#settings dd {
+                width: 30%;
+                margin: 0;
+                float: left;
+                text-align: left;
             }
             @media screen and (max-width: 720px) {
                 div#gif_container {
@@ -121,6 +146,16 @@
                 <dt>Random: <dd>R X
                 <dt>Nummer: <dd>0-9
             </dl>
+        </div>
+        <div id="settings">
+            <i class="icon fas fa-cog"></i>
+            <div class="contents">
+                <h2>Statistics</h2>
+                <dl id="statistics">
+                </dl>
+                <h2>Settings</h2>
+                No settings yet.
+            </div>
         </div>
 
         <div id="assets" style="diplay: hidden;">

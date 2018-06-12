@@ -124,6 +124,40 @@ function loadAssets() {
     });
 }
 
+function posRandNormal(mu, sigma) {
+    result = 0;
+    while (result <= 0) result = randNormal(mu, sigma);
+    return result;
+}
+// Standard Normal variate using Box-Muller transform.
+function randNormal(mu, sigma) {
+    var u = 0, v = 0, normal;
+    while(u === 0) u = Math.random(); //Converting [0,1) to (0,1)
+    while(v === 0) v = Math.random();
+    normal = Math.sqrt(-2.0 * Math.log(u)) * Math.cos(2.0 * Math.PI * v);
+    return mu + normal*sigma;
+}
+
+function updateStatistics() {
+    var element = document.getElementById("statistics");
+    var statistics = [];
+    order.forEach(function(name) {
+        statistics.push([name, parseInt(storage[name])]);
+    });
+    statistics.sort(function(a, b) {
+        if (a[1] > b[1])
+            return -1;
+        if (a[1] < b[1])
+            return 1;
+        return 0;
+    });
+    var html = ""
+    statistics.forEach(function(fissa) {
+        html += "<dt>" + songs[fissa[0]].title + ": <dd>" + formatTime(fissa[1], true);
+    });
+    element.innerHTML = html;
+}
+
 document.addEventListener("DOMContentLoaded", function() {
     // Get the optional fissa-id from the url
     result = /.*\/(\d+)/.exec(document.URL);
@@ -164,18 +198,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
     //Preload the music and images
     loadAssets();
-});
 
-function posRandNormal(mu, sigma) {
-    result = 0;
-    while (result <= 0) result = randNormal(mu, sigma);
-    return result;
-}
-// Standard Normal variate using Box-Muller transform.
-function randNormal(mu, sigma) {
-    var u = 0, v = 0, normal;
-    while(u === 0) u = Math.random(); //Converting [0,1) to (0,1)
-    while(v === 0) v = Math.random();
-    normal = Math.sqrt(-2.0 * Math.log(u)) * Math.cos(2.0 * Math.PI * v);
-    return mu + normal*sigma;
-}
+    window.setInterval(updateStatistics, 1000);
+});
