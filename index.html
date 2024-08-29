@@ -58,17 +58,19 @@
             div#inputs, div#settings {
                 display: block;
                 position: fixed;
-                width: 200px;
+                width: 60px;
                 height: 100px;
                 top: 10px;
                 right: 10px;
-                width: auto;
+            }
+            .button {
+                font-size: 3em;
             }
             div#inputs:hover dl, div#settings:hover .contents {
                 display: block;
             }
             div#settings {
-                top: 30px;
+                top: 60px;
             }
             div#inputs .icon, div#settings .icon {
                 position: absolute;
@@ -78,7 +80,7 @@
             div#inputs dl, div#settings .contents {
                 display: none;
                 position: absolute;
-                right: 15px;
+                right: 60px;
                 top: 0;
                 margin: 0;
                 width: 200px;
@@ -139,16 +141,22 @@
         </div>
 
         <div id="inputs">
-            <i class="icon far fa-keyboard"></i>
-            <dl>
-                <dt>Volgende: <dd>J L C S D <i class="fas fa-long-arrow-alt-right"></i>
-                <dt>Vorige: <dd>H K Z W A <i class="fas fa-long-arrow-alt-left"></i>
-                <dt>Random: <dd>R X
-                <dt>Nummer: <dd>0-9
-            </dl>
+            <div class="button">
+                <i class="icon far fa-keyboard"></i>
+            </div>
+            <div class="contents">
+                <dl>
+                    <dt>Volgende: <dd>J L C S D <i class="fas fa-long-arrow-alt-right"></i>
+                    <dt>Vorige: <dd>H K Z W A <i class="fas fa-long-arrow-alt-left"></i>
+                    <dt>Random: <dd>R X
+                    <dt>Nummer: <dd>0-9
+                </dl>
+            </div>
         </div>
         <div id="settings">
-            <i class="icon fas fa-cog"></i>
+            <div class="button">
+                <i class="icon fas fa-cog"></i>
+            </div>
             <div class="contents">
                 <h2>Statistics</h2>
                 <dl id="statistics">
