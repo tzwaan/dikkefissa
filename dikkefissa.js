@@ -6,11 +6,12 @@ var fluteCounter = Math.floor(Math.random() * 20);
 
 // Load a specific fissa at index "index"  in the order array
 function load(index, flute) {
+    current_index = index;
     if (music)
         music.unload();
     var version = 'src';
     var gifversion = 'gif';
-    if ('flutesrc' in songs[order[index]]) {
+    if ('flutesrc' in songs[order[current_index]]) {
         fluteCounter++;
         if (fluteCounter % 20 == 0 || flute) {
             version = 'flutesrc';
@@ -18,14 +19,14 @@ function load(index, flute) {
         }
     }
     music = new Howl({
-        src: ['/' + songs[order[index]][version]],
+        src: ['/' + songs[order[current_index]][version]],
         loop: true,
         autoplay: true
     });
     var gif = document.getElementById('gif');
-    gif.src = '/' + songs[order[index]][gifversion];
+    gif.src = '/' + songs[order[current_index]][gifversion];
     var title = document.getElementById('title');
-    title.textContent = songs[order[index]]['title'];
+    title.textContent = songs[order[current_index]]['title'];
     var number = document.getElementById('number');
     number.textContent = "" + (current_index+1) + " / " + order.length;
 
@@ -38,25 +39,25 @@ function load(index, flute) {
 
 // Load the next fissa
 function next() {
-    current_index = (current_index + 1) % order.length;
-    load(current_index);
+    load((current_index + 1) % order.length);
 }
 
 // Load the previous fissa
 function previous() {
-    current_index = (current_index - 1 + order.length) % order.length;
-    load(current_index);
+    load((current_index - 1 + order.length) % order.length);
 }
 
 // Load a random fissa
 function random(not_current) {
-    if (!not_current)
-        current_index = Math.floor(Math.random() * order.length);
-    else
-        var not = current_index;
-        while (current_index == not)
-            current_index = Math.floor(Math.random() * order.length);
-    load(current_index);
+    if (!not_current) {
+        load(Math.floor(Math.random() * order.length));
+    } else {
+        var index = current_index;
+        while (current_index == index) {
+            index = Math.floor(Math.random() * order.length);
+        }
+        load(index);
+    }
 }
 
 // Save local time statistics
@@ -164,8 +165,9 @@ document.addEventListener("DOMContentLoaded", function() {
     if (result) {
         current_index = result[1]-1;
     }
-    if (current_index >= order.length || current_index < 0)
+    if (current_index >= order.length || current_index < 0) {
         current_index = 0;
+    }
     load(current_index);
     setRandomizer();
 
@@ -181,11 +183,11 @@ document.addEventListener("DOMContentLoaded", function() {
             random(true);
         }
         else if (e.keyCode >= 48 && e.keyCode <= 57) {
-            if (e.keyCode == 48)
-                current_index = 9;
-            else
-                current_index = e.keyCode - 49;
-            load(current_index);
+            if (e.keyCode == 48) {
+                load(9);
+            } else {
+                load(e.keyCode - 49);
+            }
         }
     });
 
